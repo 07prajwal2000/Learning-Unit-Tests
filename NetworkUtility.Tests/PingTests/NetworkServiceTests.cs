@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using FakeItEasy;
 using FluentAssertions;
 using FluentAssertions.Extensions;
+using NetworkUtility.DNS;
 using NetworkUtility.Ping;
 using Xunit;
 
@@ -9,17 +12,21 @@ namespace NetworkUtility.Tests.PingTests;
 public class NetworkServiceTests
 {
 	private readonly NetworkService _networkService;
+	public readonly IDNS Dns;
 
 	public NetworkServiceTests()
 	{
+		Dns = A.Fake<IDNS>();
 		// SUT - System Under Test
-		_networkService = new NetworkService();
+		_networkService = new NetworkService(Dns);
 	}
-	
+
+
 	[Fact]
 	public void NetworkService_SendPing_ReturnsPing()
 	{
 		// Arrange
+		A.CallTo(() => Dns.SendDnsRequest()).Returns(true);
 		
 		// Act
 		var result = _networkService.SendPing();
@@ -81,14 +88,7 @@ public class NetworkServiceTests
 	public void NetworkService_SendPing_GetPingDetails()
 	{
 		// Arrange
-		var expected = new NetworkPing
-		{
-			Domain = "https://www.google.com",
-			Ping = 22,
-			Port = 123,
-			SslEnabled = true
-		};
-		
+
 		// Act
 		var result = _networkService.GetPingDetails();
 
@@ -103,4 +103,30 @@ public class NetworkServiceTests
 			.Should()
 			.BeLessThan(50);
 	}
+	
+	[Fact]
+	public void NetworkService_SendPing_MostRecentPingDetails()
+	{
+		// Arrange
+		var expectedSingle = new NetworkPing
+			{Domain = "https://dotnet.microsoft.com/", Ping = 20, Port = 1, SslEnabled = true};
+
+		// Act
+		var result = _networkService.MostRecentPingDetails();
+		
+		// Assert
+		result
+			.Should()
+			.BeOfType<List<NetworkPing>>();
+		
+		result
+			.Should()
+			.ContainEquivalentOf(expectedSingle);
+		
+		result
+			.Should()
+			.Contain(x => x.SslEnabled == true);
+
+	}
+	
 }
