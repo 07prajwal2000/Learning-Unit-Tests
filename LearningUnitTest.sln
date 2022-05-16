@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkUtility", "NetworkUtility\NetworkUtility.csproj", "{6145FD1E-D072-4C25-8247-42ADCF7CFCC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkUtility.Tests", "NetworkUtility.Tests\NetworkUtility.Tests.csproj", "{3A45116C-8963-4A36-AE19-52796AE66093}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6145FD1E-D072-4C25-8247-42ADCF7CFCC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6145FD1E-D072-4C25-8247-42ADCF7CFCC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6145FD1E-D072-4C25-8247-42ADCF7CFCC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6145FD1E-D072-4C25-8247-42ADCF7CFCC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A45116C-8963-4A36-AE19-52796AE66093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A45116C-8963-4A36-AE19-52796AE66093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A45116C-8963-4A36-AE19-52796AE66093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A45116C-8963-4A36-AE19-52796AE66093}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
